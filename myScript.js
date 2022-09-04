@@ -2,13 +2,16 @@
 const screen = document.querySelector(".screen");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
-const clear = document.querySelector(".clear")
+const clear = document.querySelector(".clear");
+const backSpace = document.querySelector(".backSpace");
 //introduce numbers and operators
 let firstNum = undefined;
 let secondNum = undefined;
 let operation = "";
 let equals = "";
-
+let oldNumber = undefined;
+let num = undefined;
+let currentResult = undefined;
 
 // event listener to clear the screen and variables
 clear.addEventListener('click', () =>{
@@ -19,9 +22,26 @@ clear.addEventListener('click', () =>{
     equals = "";
 });
 
+//remove the last element on the screen if user presses backspace
+
+backSpace.addEventListener('click',() =>{
+    oldNumber = screen.textContent;
+    let newNumber = oldNumber.slice(0, -1);
+    screen.textContent = newNumber;
+});
+
 // Add event listener to number button to show up on the calculator screen
 numbers.forEach(number => {number.addEventListener('click', () =>{
-    screen.textContent += number.value;
+    num = number.value;
+    if (currentResult != undefined){
+        screen.textContent = "";
+        currentResult = undefined;       
+    }
+    oldNumber = screen.textContent;
+    if (oldNumber.includes(".") && num ==="."){
+        num = "";
+    }
+    screen.textContent += num;
     
 });  
   });
@@ -53,8 +73,14 @@ operators.forEach(operator => {operator.addEventListener('click', () =>{
         
     }
     else{
-        equals = operator.value;
-        result(equals, operation);
+        if (secondNum=== undefined || operation===""){
+            screen.textContent = firstNum;
+            firstNum = undefined;
+        }
+        else{
+            equals = operator.value;
+            result(equals, operation);
+        }
     }
     
     
@@ -83,6 +109,7 @@ function result(sign, op){
     switch (sign === "=") {
         case op =="+":
             firstNum =add(firstNum,secondNum);
+            currentResult = firstNum;
             operation = "";
             equals = "";
             screen.textContent = firstNum;
@@ -90,6 +117,7 @@ function result(sign, op){
         
         case op =="-":
             firstNum =subtract(firstNum,secondNum);
+            currentResult = firstNum;
             operation = "";
             equals = "";
             screen.textContent = firstNum;
@@ -97,12 +125,14 @@ function result(sign, op){
         
         case op =="*":
             firstNum =multiply(firstNum,secondNum);
+            currentResult = firstNum;
             operation = "";
             equals = "";
             screen.textContent = firstNum;
             break;
         case op =="/":
             firstNum =divide(firstNum,secondNum);
+            currentResult = firstNum;
             operation = "";
             equals = "";
             screen.textContent = firstNum;
