@@ -1,5 +1,6 @@
 //Store necessary buttons and screen in a variable
 const screen = document.querySelector(".screen");
+const display = document.querySelector(".fullEquation");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const clear = document.querySelector(".clear");
@@ -20,6 +21,9 @@ clear.addEventListener('click', () =>{
     secondNum = undefined;
     operation = "";
     equals = "";
+    display.textContent = "";
+    let currentResult = undefined;
+
 });
 
 //remove the last element on the screen if user presses backspace
@@ -56,6 +60,7 @@ operators.forEach(operator => {operator.addEventListener('click', () =>{
    else{
     
         secondNum = Number(screen.textContent);
+        display.textContent = firstNum + " " + operation + " " + secondNum + " =";
         
     }
     screen.textContent = "";
@@ -70,7 +75,7 @@ operators.forEach(operator => {operator.addEventListener('click', () =>{
             operation = operator.value;
         }
         
-        
+         display.textContent = firstNum + " " + operation;
     }
     else{
         if (secondNum=== undefined || operation===""){
@@ -131,7 +136,7 @@ function result(sign, op){
             screen.textContent = firstNum;
             break;
         case op =="/":
-            firstNum =divide(firstNum,secondNum);
+            firstNum =Number(divide(firstNum,secondNum));
             currentResult = firstNum;
             operation = "";
             equals = "";
