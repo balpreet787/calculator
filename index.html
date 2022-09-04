@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <link href="http://fonts.cdnfonts.com/css/sans-comic-sans" rel="stylesheet">
+    <script src="./myScript.js" defer></script>
+    <title>Calculator</title>
 </head>
 <body>
     <div class="display">
@@ -13,25 +15,26 @@
     </div>
     <div class="userEntry">
         <div class="numbers">
-            <button class="number one">1</button>
-            <button class="number two">2</button>
-            <button class="number three">3</button>
-            <button class="number four">4</button>
-            <button class="number five">5</button>
-            <button class="number six">6</button>
-            <button class="number seven">7</button>
-            <button class="number eight">8</button>
-            <button class="number nine">9</button>
-            <button class="number decimal">.</button>
-            <button class="number zero">0</button>
+            <button class="number one" value="1">1</button>
+            <button class="number two" value="2">2</button>
+            <button class="number three" value="3">3</button>
+            <button class="number four" value="4">4</button>
+            <button class="number five" value="5">5</button>
+            <button class="number six" value="6">6</button>
+            <button class="number seven" value="7">7</button>
+            <button class="number eight" value="8">8</button>
+            <button class="number nine" value="9">9</button>
+            <button class="number decimal" value=".">.</button>
+            <button class="number zero" value="0">0</button>
         </div>
         <div class="operations">
-            <button class="operator multiply">*</button>
-            <button class="operator divide">/</button>
+            <button class="operator multiply" value="*">*</button>
+            <button class="operator divide" value="/">/</button>
             
-            <button class="operator plus">+</button>
-            <button class="operator divide">/</button>
-            <button class="operator equals">=</button>
+            <button class="operator add" value="+">+</button>
+            <button class="operator subtract" value="-">-</button>
+            <button class="operator equals" value="=">=</button>
+            <button class="clear">Clear</button>
         </div>
     </div>
     
